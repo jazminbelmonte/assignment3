@@ -6,5 +6,5 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(include)
 
-add_executable(main src/main.cpp)
+add_executable(main src/main.cpp include/safe_collection.h include/sorted_collection.h)
 add_executable(tester src/tester.cpp)

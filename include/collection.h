@@ -14,13 +14,16 @@ public:
 
   Collection(int size): capacity(size), sz(size), 
     elements(std::make_unique<Item[]>(capacity)){}
+
   Collection(Collection<Item>& a): capacity(a.capacity), sz(a.sz),
     elements(std::make_unique<Item[]>(capacity)) {
     for (int i = 0; i < a.sz; i++) elements[i] = a.elements[i];
   }
 
   virtual int size() { return sz; }
+
   virtual Item get(int ndx) const { return elements[ndx]; }
+
   virtual void add(Item e) {
     if (sz == capacity) {
       expand();
@@ -28,14 +31,17 @@ public:
 
     (*this)[sz++] = e;
   }
+
   virtual Collection<Item>& remove() {
     sz--;
     return *this;
   }
 
   virtual Item* begin() { return elements.get(); }
+
   virtual Item* end() { return elements.get() + sz; }
 
+  //overloaded = operator
   virtual Collection<Item>& operator=(Collection<Item>& a) {
     auto newElements = std::make_unique<Item[]>(a.capacity);
     for (int i = 0; i < a.sz; i++) newElements[i] = a.elements[i];
@@ -45,12 +51,25 @@ public:
 
     return *this;
   }
+
+  //overloaded [] operators
   virtual Item operator[](int ndx) const { return elements[ndx]; }
   virtual Item& operator[](int ndx) { return elements[ndx]; }
+
+  //overloaded << operator
   virtual Collection<Item>& operator<<(Item e) {
     add(e);
     return *this;
   }
+
+  // TODO: overload + operator
+
+  // TODO: overload -- operator
+
+  // TODO: overload - operator
+
+  // TODO: overload << operator
+
   virtual ~Collection(){}
 
 protected:
@@ -66,6 +85,7 @@ protected:
 
     capacity *= 2;
   }
-};
+
+};//end of class Collection
 
 #endif

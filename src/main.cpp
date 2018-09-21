@@ -1,4 +1,6 @@
 #include <iostream>
+#include "collection.h"
+
 using namespace std;
 
 int main() {
