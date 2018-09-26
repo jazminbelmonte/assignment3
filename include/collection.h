@@ -6,6 +6,7 @@
 #include <string>
 #include <stdexcept>
 
+
 template<typename Item>
 class Collection {
 public:
@@ -63,12 +64,27 @@ public:
   }
 
   // TODO: overload + operator
+  Collection<Item>& operator+(Item n){
+    return add(n);
+  }
 
   // TODO: overload -- operator
+  Collection<Item>& operator--(){
+    return remove();
+  }
 
   // TODO: overload - operator
+  Collection<Item>& operator-(int n){
+
+  }
 
   // TODO: overload << operator
+  friend std::ostream& operator<<(std::ostream& out, Collection<Item>& c)
+  {
+    out << c;
+    return out;
+  }
+
 
   virtual ~Collection(){}
 
