@@ -5,7 +5,7 @@
 #ifndef SAFE_COLLECTION_H
 #define SAFE_COLLECTION_H
 
-//#include <stdrun>
+#include <stdexcept>
 #include "collection.h"
 
 template <typename Item>
