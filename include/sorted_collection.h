@@ -27,7 +27,7 @@ public:
           i++;
         }
         newElements[i] = e;
-        while (i < this->sz){
+        while (e < this->elements[i] && i < this->sz){
           newElements[i+1] = this->elements[i];
           i++;
         }
@@ -39,9 +39,10 @@ public:
         while (e > this->elements[i]){
           newElements[i] = this->elements[i];
           i++;
+          
         }
         newElements[i] = e;
-        while (i < this->sz){
+        while (e < this->elements[i] && i < this->sz){
           newElements[i+1] = this->elements[i];
           i++;
         }
