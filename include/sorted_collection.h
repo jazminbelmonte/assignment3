@@ -18,18 +18,40 @@ public:
     SortedCollection(Collection<Item>& a) : SafeCollection<Item>(a) {}
 
     //TODO: override add function to add in a sorted manner
-    //bubble sort
     void add(Item e) {
-      auto newElements = std::make_unique<Item[]>(this->capacity);
-      for (int i = 0; i <= (this->sz-1); i++) {
-        if (e > this->elements[i]){
-          newElements[i-1] = this->elements[i-1];
-        } else if (e < this->elements[i]){
-          newElements[i-1] = e;
+      if (this->sz < this->capacity) {
+        auto newElements = std::make_unique<Item[]>(this->capacity);
+        int i = 0;
+        while (e > this->elements[i]){
+          newElements[i] = this->elements[i];
+          i++;
         }
+        newElements[i] = e;
+        while (i < this->sz){
+          newElements[i+1] = this->elements[i];
+          i++;
+        }
+        this->sz++;
+      }
+      if (this->sz == this->capacity) {
+        auto newElements = std::make_unique<Item[]>(this->capacity * 2);
+        int i = 0;
+        while (e > this->elements[i]){
+          newElements[i] = this->elements[i];
+          i++;
+        }
+        newElements[i] = e;
+        while (i < this->sz){
+          newElements[i+1] = this->elements[i];
+          i++;
+        }
+        this->sz++;
+        this->capacity *= 2;
       }
     }
 };
+
+
 
 #endif //SORTED_COLLECTION_H
 

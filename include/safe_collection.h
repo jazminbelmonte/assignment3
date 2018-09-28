@@ -32,7 +32,7 @@ public:
     //overriding [] operators
 
     Item operator[](int ndx) const {
-      if (ndx <= 0){
+      if (ndx < 0){
         throw std::runtime_error("Given index is less than 0");
       } else if (ndx > this->sz) {
         throw std::runtime_error("Given index is greater than size");
@@ -42,7 +42,7 @@ public:
     }
 
     Item& operator[](int ndx) {
-      if (ndx <= 0){
+      if (ndx < 0){
         throw std::runtime_error("Given index is less than 0");
       } else if (ndx > this->sz) {
         throw std::runtime_error("Given index is greater than size");

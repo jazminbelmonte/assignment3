@@ -8,5 +8,7 @@ using namespace std;
 
 int main() {
 
+  SortedCollection<int> test;
+
   return 0;
 }
