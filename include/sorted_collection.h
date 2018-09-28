@@ -22,7 +22,7 @@ public:
       if (this->sz < this->capacity) {
         auto newElements = std::make_unique<Item[]>(this->capacity);
         int i = 0;
-        while (e > this->elements[i]){
+        while (e > this->elements[i] && i < this->sz){
           newElements[i] = this->elements[i];
           i++;
         }
@@ -36,10 +36,10 @@ public:
       if (this->sz == this->capacity) {
         auto newElements = std::make_unique<Item[]>(this->capacity * 2);
         int i = 0;
-        while (e > this->elements[i]){
+        while (e > this->elements[i] && i < this->sz){
           newElements[i] = this->elements[i];
           i++;
-          
+
         }
         newElements[i] = e;
         while (e < this->elements[i] && i < this->sz){
