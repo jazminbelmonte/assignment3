@@ -19,7 +19,7 @@ public:
     SafeCollection(Collection<Item>& a) : Collection<Item>(a) {}
 
     //overriding the remove() function
-    Collection<Item>& remove() {
+    SafeCollection<Item>& remove() {
       if (this->sz == 0){
         throw std::runtime_error("Nothing to remove");
       } else {
@@ -50,6 +50,9 @@ public:
         return this->elements[ndx];
       }
     }
+
+    //virtual Item operator[](int ndx) const { return elements[ndx]; }
+    //virtual Item& operator[](int ndx) { return elements[ndx]; }
 
 };
 

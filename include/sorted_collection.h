@@ -2,6 +2,7 @@
 // Created by Jazmin Belmonte on 9/21/18.
 //
 #include "safe_collection.h"
+#include <string>
 
 #ifndef SORTED_COLLECTION_H
 #define SORTED_COLLECTION_H
@@ -11,57 +12,70 @@ class SortedCollection : public SafeCollection<Item> {
 
 public:
 
-    //corresponding SafeCollection constructors
+    //TODO: corresponding SafeCollection constructors
     SortedCollection() : SafeCollection<Item>() {}
     SortedCollection(int size) : SafeCollection<Item>(size) {}
     SortedCollection(Collection<Item>& a) : SafeCollection<Item>(a) {}
 
-    //overriding add function to add in a sorted manner
+    //TODO: override add function to add in a sorted manner
+    //bubble sort
     void add(Item e) {
-      //make a temp copy of the dynamic array
-      Item *temp = new Item[this->sz];
-      //copy current array into temp
-
-
+      auto newElements = std::make_unique<Item[]>(this->capacity);
+      for (int i = 0; i <= (this->sz-1); i++) {
+        if (e > this->elements[i]){
+          newElements[i-1] = this->elements[i-1];
+        } else if (e < this->elements[i]){
+          newElements[i-1] = e;
+        }
+      }
     }
-
 };
 
 #endif //SORTED_COLLECTION_H
 
 
-/*// theSize is a private member of a class that holds the array
-  int j = theSize - 1;
-  // dynamic allocation
-  int *temp = new int[theSize];
-  for (int k = 0; k < theSize; k++) {
-  temp[k] = x[k];
+
+/*
+void add(Item e) {
+  auto newElements = std::make_unique<Item[]>(this->sz +1);
+  while (needAdd) {
+    for (int i; i <= this->sz; i++) {
+      if (e > this->elements[i-1]) {
+        newElements[i-1] = this->elements[i-1];
+      } else if ( e < this->elements[i]){
+        newElements[i-1] = e;
+        needAdd = false;
+      }
+    }
   }
-  delete [] x;
-  // using j >=0 because I need to check as low as the x[0] value
-  for(; j >=0 && element < temp[j]; --j) {
-  // So in the first run starting at x[3]
-  //    this would be the value at x[3] is now at x[4]
-  temp[j] = temp[j+1];
+  for (int i; i <= this->sz; i++){
+    newElements[i-1] = this->elements[i-1];
   }
-
-  temp[j] = element;
-  x = temp;
-  delete [] temp;
-  theSize++;
-  */
+}*/
 
 
 
 
+/*
+int s = this->sz;
+auto newElements= std::make_unique<Item[]>(s+1);
+for (; s && this->elements < newElements[s-1]; --s){
+newElements[s] = this->elements[s-1];
+}*/
 
 
 
 
 
-
-//      if (this->sz == this->capacity) {
-//        this->expand();
-//      }
-//
-//      (*this)[this->sz++] = e;
+/*auto newElements = std::make_unique<Item[]>(this->capacity);
+for (int i = 0; i < this->sz; i++) newElements[i] = this->elements[i];
+newElements[this->sz++] = e;
+for (int i = (this->sz-1); i > 0; i--){
+for (int j = 1; j <= 1; j++){
+if (newElements[j-1] > newElements[j]){
+e = newElements[j-1];
+newElements[j-1] = newElements[j];
+newElements[j] = e;
+}
+}
+}*/

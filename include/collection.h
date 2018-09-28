@@ -44,11 +44,17 @@ public:
 
   //overloaded = operator
   virtual Collection<Item>& operator=(Collection<Item>& a) {
+    //creating new array with same capacity
     auto newElements = std::make_unique<Item[]>(a.capacity);
+    //for each item within the array size copy array elements into new array elements
     for (int i = 0; i < a.sz; i++) newElements[i] = a.elements[i];
+    //finally move elements
     elements = move(newElements);
+    //copy capacity
     capacity = a.capacity;
+    //copy size
     sz = a.sz;
+
 
     return *this;
   }
@@ -65,7 +71,8 @@ public:
 
   // TODO: overload + operator
   Collection<Item>& operator+(Item n){
-    return add(n);
+    add(n);
+    return *this;
   }
 
   // TODO: overload -- operator
@@ -75,13 +82,17 @@ public:
 
   // TODO: overload - operator
   Collection<Item>& operator-(int n){
-
+    for (int i = 1; i <= n; i++) {
+      remove();
+    }
+    return *this;
   }
 
   // TODO: overload << operator
-  friend std::ostream& operator<<(std::ostream& out, Collection<Item>& c)
-  {
-    out << c;
+  friend std::ostream& operator<<(std::ostream& out, const Collection<Item>& c) {
+    for (int i = 0; i < c.sz; i++) {
+      out << c[i]<< std::endl;
+    }
     return out;
   }
 
